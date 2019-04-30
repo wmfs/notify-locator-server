@@ -5,13 +5,28 @@
   </head>
   <body>
     <div class="container">
-      <form style="margin-top: 48px;">
-        <div class="form-group">
-          <label for="mobileNumber">Mobile number</label>
-          <input type="text" id="mobileNumber" class="form-control" placeholder="Mobile number" />
+      <div class="jumbotron" style="margin-top: 48px;">
+        <h1 class="display-4">Notify Locator</h1>
+        <p class="lead">blah blah blah...</p>
+        
+        <hr class="my-4">
+        
+        <div class="form-inline">
+          <div class="form-group mr-sm-3 mb-2">
+            <label for="mobileNumber" class="sr-only">Mobile number</label>
+            <input type="text" id="mobileNumber" class="form-control" placeholder="Mobile number" />
+          </div>
+          <button onclick="send()" class="btn btn-primary mb-2">Send SMS</button>
         </div>
-        <button onclick="send()" class="btn btn-primary">Send SMS</button>
-      </form>
+
+        <div id="smsError" class="alert alert-danger" role="alert" style="display: none;">
+            There was an error.
+        </div>
+
+        <div id="smsSuccess" class="alert alert-success" role="alert" style="display: none;">
+            SMS has been sent.
+        </div>
+      </div>
     </div>
 
     <script>
@@ -19,11 +34,27 @@
       const xhttp = new XMLHttpRequest()
 
       function send () {
+        document.getElementById('smsSuccess').setAttribute('style', 'display: none;')
+        document.getElementById('smsError').setAttribute('style', 'display: none;')
+
         const mobileNumber = document.getElementById('mobileNumber').value
+        
+        // TODO: validate mobileNumber
 
         if (!!mobileNumber.trim()) {
           xhttp.open('POST', `${PATH}send?mobileNumber=${mobileNumber}`, true)
           xhttp.send()
+        }
+      }
+
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4) {
+          const { statusCode } = JSON.parse(xhttp.response)
+          if (statusCode === 201) {
+            document.getElementById('smsSuccess').setAttribute('style', 'display: block;')
+          } else {
+            document.getElementById('smsError').setAttribute('style', 'display: block;')
+          }
         }
       }
     </script>
