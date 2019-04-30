@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/wmfs/notify-locator-server.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "WMFS",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/wmfs/notify-locator-server/issues"
   },
