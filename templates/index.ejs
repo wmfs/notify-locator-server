@@ -7,7 +7,7 @@
     <div class="container">
       <div class="jumbotron" style="margin-top: 48px;">
         <h1 class="display-4">Notify Locator</h1>
-        <p class="lead">blah blah blah...</p>
+        <!-- <p class="lead">blah blah blah...</p> -->
         
         <hr class="my-4">
         
@@ -16,7 +16,12 @@
             <label for="mobileNumber" class="sr-only">Mobile number</label>
             <input type="text" id="mobileNumber" class="form-control" placeholder="Mobile number" />
           </div>
-          <button onclick="send()" class="btn btn-primary mb-2">Send SMS</button>
+
+          <button id="smsSubmit" onclick="send()" class="btn btn-primary mr-sm-3 mb-2">Send SMS</button>
+ 
+          <div id="smsStatus" class="spinner-border text-secondary mb-2" role="status"  style="display: none;">
+            <span class="sr-only">Loading...</span>
+          </div>
         </div>
 
         <div id="smsError" class="alert alert-danger" role="alert" style="display: none;">
@@ -34,6 +39,9 @@
       const xhttp = new XMLHttpRequest()
 
       function send () {
+        document.getElementById('smsSubmit').disabled = true
+        document.getElementById('mobileNumber').disabled = true
+        document.getElementById('smsStatus').setAttribute('style', 'display: inline-block;')
         document.getElementById('smsSuccess').setAttribute('style', 'display: none;')
         document.getElementById('smsError').setAttribute('style', 'display: none;')
 
@@ -55,6 +63,10 @@
           } else {
             document.getElementById('smsError').setAttribute('style', 'display: block;')
           }
+
+          document.getElementById('smsSubmit').disabled = false
+          document.getElementById('mobileNumber').disabled = false
+          document.getElementById('smsStatus').setAttribute('style', 'display: none;')
         }
       }
     </script>
