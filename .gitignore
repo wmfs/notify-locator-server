@@ -93,8 +93,9 @@ package-deps.json
 package-lock.json
 lerna-debug.log
 
-TEST-result.xml
 .gradle/
 .embedpostgresql/
 
 build
+
+.env
