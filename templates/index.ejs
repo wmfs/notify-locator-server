@@ -1,1 +1,26 @@
-<%= text %>
+<html>
+  <head>
+    <title>Locator</title>
+  </head>
+  <body>
+    <div>
+      Mobile number:
+      <input type="text" id="mobileNumber" />
+      <button onclick="send()">Send SMS</button>
+    </div>
+
+    <script>
+      const PATH = `http://localhost:8080/`
+      const xhttp = new XMLHttpRequest()
+
+      function send () {
+        const mobileNumber = document.getElementById('mobileNumber').value
+
+        if (!!mobileNumber.trim()) {
+          xhttp.open('POST', `${PATH}send?mobileNumber=${mobileNumber}`, true)
+          xhttp.send()
+        }
+      }
+    </script>
+  </body>
+</html>
