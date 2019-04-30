@@ -35,7 +35,6 @@
     </div>
 
     <script>
-      const PATH = `http://localhost:8080/`
       const xhttp = new XMLHttpRequest()
 
       function send () {
@@ -50,7 +49,7 @@
         // TODO: validate mobileNumber
 
         if (!!mobileNumber.trim()) {
-          xhttp.open('POST', `${PATH}send?mobileNumber=${mobileNumber}`, true)
+          xhttp.open('POST', `<%= URL %>send?mobileNumber=${mobileNumber}`, true)
           xhttp.send()
         }
       }
