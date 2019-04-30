@@ -1,9 +1,14 @@
+.creds
+
+## Node ###
+~*
+.~*
+\#*
+
 # Logs
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Runtime data
 pids
@@ -23,24 +28,19 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
-# Bower dependency directory (https://bower.io/)
-bower_components
-
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (https://nodejs.org/api/addons.html)
+# Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directories
-node_modules/
-jspm_packages/
-
-# TypeScript v1 declaration files
-typings/
+node_modules
+jspm_packages
 
 # Optional npm cache directory
 .npm
+package-lock.json
 
 # Optional eslint cache
 .eslintcache
@@ -54,8 +54,47 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
 
-# next.js build output
-.next
+## IDE things ##
+
+# Webstorm
+.idea
+
+# VS Code
+.vscode
+
+# Eclipse:
+
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+
+scratch.txt
+
+output/
+
+# Ignore Rush temporary files
+/common/temp/**
+
+package-deps.json
+
+.yo-rc.json
+
+package-lock.json
+lerna-debug.log
+
+TEST-result.xml
+.gradle/
+.embedpostgresql/
+
+build
