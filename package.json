@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/wmfs/notify-locator-server/issues"
   },
-  "homepage": "https://github.com/wmfs/notify-locator-server#readme"
+  "homepage": "https://github.com/wmfs/notify-locator-server#readme",
+  "dependencies": {
+    "fastify": "2.3.0",
+    "point-of-view": "3.3.0"
+  }
 }
