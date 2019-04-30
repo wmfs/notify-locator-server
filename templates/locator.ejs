@@ -22,7 +22,7 @@
     </div>
 
     <script>
-      if (info.status === 'success') {
+      if ('<%= info.status %>' === 'success') {
         L.mapbox.accessToken = '<%= mapboxToken %>'
         const map = L.mapbox.map('map')
           .setView([<%= info.lat %>, <%= info.lon %>], 20)
