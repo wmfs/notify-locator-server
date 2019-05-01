@@ -44,8 +44,12 @@
         ws.onmessage = async event => {
           const blob = event.data
           const text = await (new Response(blob)).text()
-          document.getElementById('updatesArea').innerText = text
+          renderList(text)
         }
+      }
+
+      function renderList (data) {
+        document.getElementById('updatesArea').innerText = data
       }
 
       function send () {
@@ -60,7 +64,7 @@
         // TODO: validate mobileNumber
 
         if (!!mobileNumber.trim()) {
-          xhttp.open('POST', `<%= URL %>send?mobileNumber=${mobileNumber}`, true)
+          xhttp.open('POST', `<%= SERVER_URL %>send?mobileNumber=${mobileNumber}`, true)
           xhttp.send()
         }
       }
