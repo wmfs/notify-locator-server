@@ -33,7 +33,9 @@
         </div>
       </div>
 
-      <div id="updatesArea"></div>
+      <div>
+        <ul id="updatesUL" class="list-group"></ul>
+      </div>
     </div>
 
     <script>
@@ -49,7 +51,19 @@
       }
 
       function renderList (data) {
-        document.getElementById('updatesArea').innerText = data
+        const updatesUL = document.getElementById('updatesUL')
+        updatesUL.innerHTML = ''
+
+        for (const [key, val] of Object.entries(JSON.parse(data))) {
+          const li = document.createElement('li')
+          li.setAttribute('class', 'list-group-item')
+
+          const displayText = `${key} ${val.status} ${val.lat && val.lon ? `${val.lat}, ${val.lon}` : ''}`
+          const textNode = document.createTextNode(displayText)
+          li.appendChild(textNode)
+
+          updatesUL.appendChild(li)
+        }
       }
 
       function send () {
