@@ -39,7 +39,6 @@
     </div>
 
     <script>
-      const xhttp = new XMLHttpRequest()
       const ws = new WebSocket('ws://localhost:8080/')
 
       ws.onopen = event => {
@@ -66,7 +65,7 @@
         }
       }
 
-      function send () {
+      async function send () {
         document.getElementById('smsSubmit').disabled = true
         document.getElementById('mobileNumber').disabled = true
         document.getElementById('smsStatus').setAttribute('style', 'display: inline-block;')
@@ -78,15 +77,14 @@
         // TODO: validate mobileNumber
 
         if (!!mobileNumber.trim()) {
-          xhttp.open('POST', `<%= SERVER_URL %>send?mobileNumber=${mobileNumber}`, true)
-          xhttp.send()
-        }
-      }
+          const res = await fetch(
+            `<%= SERVER_URL %>send?mobileNumber=${mobileNumber}`,
+            { method: 'POST' }
+          )
 
-      xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4) {
-          const { statusCode } = JSON.parse(xhttp.response)
-          if (statusCode === 201) {
+          const json = await res.json()
+
+          if (json.statusCode === 201) {
             document.getElementById('smsSuccess').setAttribute('style', 'display: block;')
           } else {
             document.getElementById('smsError').setAttribute('style', 'display: block;')
