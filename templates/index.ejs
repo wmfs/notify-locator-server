@@ -32,10 +32,21 @@
             SMS has been sent.
         </div>
       </div>
+
+      <div id="updatesArea"></div>
     </div>
 
     <script>
       const xhttp = new XMLHttpRequest()
+      const ws = new WebSocket('ws://localhost:8080/')
+
+      ws.onopen = event => {
+        ws.onmessage = async event => {
+          const blob = event.data
+          const text = await (new Response(blob)).text()
+          document.getElementById('updatesArea').innerText = text
+        }
+      }
 
       function send () {
         document.getElementById('smsSubmit').disabled = true
